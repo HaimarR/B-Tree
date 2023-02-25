@@ -1,5 +1,7 @@
 package main.java.Personal.Elevator;
 
+import java.util.Arrays;
+
 public class Elevator{
 
     private int totalLevels;
@@ -36,4 +38,31 @@ public class Elevator{
     public int getGoingTo() {return goingTo;}
     public boolean getOnCall() {return onCall;}
     public int[] getCalls() {return calls;}
+
+    public void goTo(int goingTo) {
+        if (currentLevel < goingTo) {
+            for (int i = currentLevel; i <= goingTo; i++ ) {
+                currentLevel++;
+            }
+        } else if (currentLevel < goingTo) {
+            for (int i = currentLevel; i <= goingTo; i++ ) {
+                currentLevel++;
+            }
+        } else if (currentLevel == goingTo) {
+            throw new IllegalArgumentException("");
+        }
+        
+    }
+
+    @Override
+    public String toString() {
+        return "Elevator{total=" + totalLevels + "; current=" + currentLevel + 
+                "; goingTo=" + goingTo + "; onCall=" + onCall + "; calls=" + Arrays.toString(calls);  
+    }
+    public static void main(String[] args) {
+        Elevator elevator = new Elevator(10);
+
+        elevator.goTo(5);
+        System.out.println(elevator);
+    }
 }
