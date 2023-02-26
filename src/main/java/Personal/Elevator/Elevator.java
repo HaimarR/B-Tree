@@ -9,6 +9,7 @@ public class Elevator{
     private int goingTo;
     private boolean onCall;
     private int[] calls;
+    public boolean doorsOpened = false;
 
     public Elevator(int totalLevels) {
         currentLevel = 0;
@@ -38,6 +39,7 @@ public class Elevator{
     public int getGoingTo() {return goingTo;}
     public boolean getOnCall() {return onCall;}
     public int[] getCalls() {return calls;}
+    public boolean getOpenDoors() {return doorsOpened;}
 
     public void goTo(int goingTo) {
         if (currentLevel < goingTo) {
@@ -49,9 +51,17 @@ public class Elevator{
                 currentLevel++;
             }
         } else if (currentLevel == goingTo) {
-            throw new IllegalArgumentException("");
+            throw new IllegalArgumentException("Elevator is already at level " + goingTo + ".");
         }
         
+    }
+
+    public void openDoors() {
+        if (currentLevel == goingTo) {
+            doorsOpened = true;
+        } else {
+            throw new IllegalArgumentException("Can't open doors. Elevtor is moving.");
+        }
     }
 
     @Override
@@ -59,6 +69,7 @@ public class Elevator{
         return "Elevator{total=" + totalLevels + "; current=" + currentLevel + 
                 "; goingTo=" + goingTo + "; onCall=" + onCall + "; calls=" + Arrays.toString(calls);  
     }
+
     public static void main(String[] args) {
         Elevator elevator = new Elevator(10);
 
