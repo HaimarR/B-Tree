@@ -1,62 +1,69 @@
-package main.java.Personal.Elevator;
+package main.java.Personal.ElevatorProject;
 
 import java.util.Arrays;
 
 public class Elevator{
 
     private int totalLevels;
-    private int currentLevel; 
-    private int goingTo;
+    private int currentLevel;
     private boolean onCall;
     private int[] calls;
     public boolean doorsOpened = false;
 
     public Elevator(int totalLevels) {
         currentLevel = 0;
-        goingTo = -2147483648;
         onCall = false;
         calls = new int[totalLevels];
     }
 
     public Elevator(int totalLevels, int currentLevel) {
-        this(totalLevels, currentLevel, -2147483648, false, new int[totalLevels]);
+        this(totalLevels, currentLevel, false, new int[totalLevels]);
     }
 
-    public Elevator(int totalLevels, int currentLevel, int goingTo) {
-        this(totalLevels, currentLevel, goingTo, false, new int[totalLevels]);
+    public Elevator(int totalLevels, int currentLevel, boolean onCall) {
+        this(totalLevels, currentLevel, onCall, new int[totalLevels]);
     }
 
-    public Elevator(int totalLevels, int currentLevel, int goingTo, boolean onCall) {
-        this(totalLevels, currentLevel, goingTo, onCall, new int[totalLevels]);
-    }
-
-    public Elevator(int totalLevels, int currentLevel, int goingTo, boolean onCall, int[] calls) {
+    public Elevator(int totalLevels, int currentLevel, boolean onCall, int[] calls) {
 
     }
 
     public int getTotalLevels() {return totalLevels;}
     public int getCurrentLevel() {return currentLevel;}
-    public int getGoingTo() {return goingTo;}
     public boolean getOnCall() {return onCall;}
     public int[] getCalls() {return calls;}
     public boolean getOpenDoors() {return doorsOpened;}
 
-    public void goTo(int goingTo) {
+    public int goTo(Integer goingTo) {
+
+        System.out.println(currentLevel);
+        System.out.println(goingTo);
+
         if (currentLevel < goingTo) {
             for (int i = currentLevel; i <= goingTo; i++ ) {
-                currentLevel++;
+                currentLevel = i;
+                System.out.println("UP, " + currentLevel);
+                
             }
-        } else if (currentLevel < goingTo) {
-            for (int i = currentLevel; i <= goingTo; i++ ) {
-                currentLevel++;
+            openDoors(goingTo);
+        } else if (currentLevel > goingTo) {
+            for (int i = currentLevel; i >= goingTo; i-- ) {
+                currentLevel = i;
+                System.out.println("DOWN, " + currentLevel);
+                
             }
+            openDoors(goingTo);
         } else if (currentLevel == goingTo) {
             throw new IllegalArgumentException("Elevator is already at level " + goingTo + ".");
         }
+
+        return currentLevel;
         
     }
 
-    public void openDoors() {
+    public void openDoors(int goingTo) {
+        System.out.println(currentLevel);
+        System.out.println(goingTo);
         if (currentLevel == goingTo) {
             doorsOpened = true;
         } else {
@@ -67,7 +74,7 @@ public class Elevator{
     @Override
     public String toString() {
         return "Elevator{total=" + totalLevels + "; current=" + currentLevel + 
-                "; goingTo=" + goingTo + "; onCall=" + onCall + "; calls=" + Arrays.toString(calls);  
+                "; onCall=" + onCall + "; calls=" + Arrays.toString(calls)+ "}";  
     }
 
     public static void main(String[] args) {

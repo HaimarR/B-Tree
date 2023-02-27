@@ -1,0 +1,28 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Elevator",
+            "request": "launch",
+            "mainClass": "main.java.Personal.ElevatorProject.Elevator",
+            "projectName": "Personal_7eaa5824"
+        },
+        {
+            "type": "java",
+            "name": "Launch Person",
+            "request": "launch",
+            "mainClass": "main.java.Personal.ElevatorProject.Person",
+            "projectName": "Personal_7eaa5824"
+        }
+    ]
+}
