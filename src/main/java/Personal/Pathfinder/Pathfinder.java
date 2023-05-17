@@ -16,4 +16,9 @@ public class Pathfinder<E> {
             throw new PathfinderException("Either the initial or the goal vertices are inaccessible.");
         }
     }
+
+    public static void main(String[] args) {
+        Tablemaker tablemaker = new Tablemaker(10, 10);
+         
+    }
 }
