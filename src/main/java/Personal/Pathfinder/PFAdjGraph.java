@@ -63,7 +63,7 @@ public class PFAdjGraph<E> implements Graph<E> {
                 return true;
             } else {
                 for(PFVertex<E> n : v.getNeighbors()) {
-                    if(!visited.contains(n)) {
+                    if(!visited.contains(n) && n.isOpen()) {
                         visited.add(n);
                         queue.add(n);
                     }
@@ -91,7 +91,7 @@ public class PFAdjGraph<E> implements Graph<E> {
                 break;
             } else {
                 for(PFVertex<E> n : v.getNeighbors()) {
-                    if(!predecessors.containsKey(n)) {
+                    if(!predecessors.containsKey(n) && n.isOpen()) {
                         predecessors.put(n, v);
                         queue.add(n);
                     }

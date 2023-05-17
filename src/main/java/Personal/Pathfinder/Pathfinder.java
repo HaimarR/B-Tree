@@ -1,22 +1,19 @@
 package main.java.Personal.Pathfinder;
 
 import java.util.LinkedList;
-import graph
 
-public class Pathfinder {
-    private Graph<PFTuple, Boolean> map;
-    private PFTuple initial;
-    private PFTuple goal;
+public class Pathfinder<E> {
+    private PFAdjGraph<PFVertex<E>> graph;
 
-    public Pathfinder(Map<PFTuple, Boolean> map) {
-        this.map = map;
+    public Pathfinder(Graph<PFVertex<E>> map) {
+        this.graph = new PFAdjGraph<>();
     }
-
-    public boolean connected(PFTuple a, PFTuple b) {
-        
-    }
-
-    public LinkedList<PFTuple> pathfind(PFTuple initial, PFTuple goal) {
-        
+    
+    public LinkedList<PFVertex<E>> pathfind(PFVertex<E> initial, PFVertex<E> goal) throws PathfinderException {
+        if(initial.isOpen() && goal.isOpen()) {
+            return (LinkedList<PFVertex<E>>)graph.BFPath(initial, goal);
+        } else {
+            throw new PathfinderException("Either the initial or the goal vertices are inaccessible.");
+        }
     }
 }
